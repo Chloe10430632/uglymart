@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - &lt;Vue.js&gt; 購物網站-Uglymart 仿刻</title>
+  <meta property="og:title" content="2024 Uglymart Website" />
+<meta property="og:description" content="醜商店購物網站練習" />
+<meta property="og:image" content="https://i.imgur.com/f25s82T.jpeg" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"><link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=Seymour+One&amp;display=swap'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="ugm">
+  <section class="top col-lg-12" id="head"><a class="ugly" @click="removeline()"><img src="https://shoplineimg.com/6129efefcb5f400016514425/612a6a71843217001d7d8272/1200x.webp?source_format=png" width="280px"/></a></section>
+  <section class="nav col-lg-12">
+    <label class="nav_sty home" :class="{bottom_line:nav_home}">HOME
+      <input type="checkbox" v-model="nav_home"/>
+    </label>
+    <label class="nav_sty clothe" :class="{bottom_line:nav_clothe}">CLOTHE
+      <input type="checkbox" v-model="nav_clothe"/>
+    </label>
+    <label class="nav_sty bag" :class="{bottom_line:nav_bag}"> BAG
+      <input type="checkbox" v-model="nav_bag"/>
+    </label>
+    <label class="nav_sty acc" :class="{bottom_line:nav_acc}"> ACC
+      <input type="checkbox" v-model="nav_acc"/>
+    </label>
+    <div class="cartimg" @click="cartblock()">
+      <div class="reddot"></div>
+    </div>
+  </section>
+  <transition name="slide-fade">
+    <div class="cartnote">
+      <div class="delbtn" @click="cartnone()">✘</div>
+      <div class="emptycart" id="selectlist">
+        <div class="wrap" v-for="(select,id) in selectlist"> <img :src="select.url1" width="40px"/>
+          <div class="name">{{select.name}}</div>
+          <div class="minus" @click="minus(id)" :id="'minusid'+id" :data_minus="id">－</div>
+          <div class="num">{{select.num}}</div>
+          <div class="plus" @click="plus(id)" :id="'plusid'+id" :data_plus="id">＋</div>
+          <div class="price">{{select.price}}</div>
+          <div class="delbtn2" @click="remove_item(id)" :id="'delid'+id" :data_del="id">✘</div>
+        </div>
+      </div>
+      <div id="total"> </div>
+    </div>
+  </transition>
+  <section class="greyscreen" @click="cartnone()"></section><a class="back2top" href="#head"> ʕ•ᴥ•ʔ</a>
+  <section class="middle col-lg-12">
+    <div class="banner col-lg-12"></div>
+    <div class="col-lg-12" id="itemlist">
+      <div class="box" v-for="(item,id) in home" v-show="nav_home" :key="home"> <img :src="item.url1" width="200px"/><img class="up" :src="item.url2" width="200px"/>
+        <div class="name">{{item.name}}</div>
+        <div class="price">{{item.price}}</div>
+        <div class="addbtn" @click="addhome(id)" :id="'homeadd'+id" :data_home="id">加入購物車</div>
+      </div>
+      <div class="box" v-for="(item,id) in clothe" v-show="nav_clothe"> <img :src="item.url1" width="200px"/><img class="up" :src="item.url2" width="200px"/>
+        <div class="name">{{item.name}}</div>
+        <div class="price">{{item.price}}</div>
+        <div class="addbtn" @click="addclothe(id)" :id="'clotheadd'+id" :data_clothe="id">加入購物車</div>
+      </div>
+      <div class="box" v-for="(item,id) in bag" v-show="nav_bag"> <img :src="item.url1" width="200px"/><img class="up" :src="item.url2" width="200px"/>
+        <div class="name">{{item.name}}</div>
+        <div class="price">{{item.price}}</div>
+        <div class="addbtn" @click="addbag(id)" :id="'bagadd'+id" :data_bag="id">加入購物車</div>
+      </div>
+      <div class="box" v-for="(item,id) in acc" v-show="nav_acc"> <img :src="item.url1" width="200px"/><img class="up" :src="item.url2" width="200px"/>
+        <div class="name">{{item.name}}</div>
+        <div class="price">{{item.price}}</div>
+        <div class="addbtn" @click="addacc(id)" :id="'accadd'+id" :data_acc="id">加入購物車</div>
+      </div>
+    </div>
+  </section>
+  <div class="bottom col-lg-12">© 1996 UGLYMART All Rights Reserved</div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.37/vue.global.prod.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
